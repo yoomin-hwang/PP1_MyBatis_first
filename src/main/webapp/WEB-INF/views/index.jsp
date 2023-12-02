@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<jsp:forward page="posts.jsp" />
+<h2>Hello World! 안녕</h2>
 
 </body>
 </html>
