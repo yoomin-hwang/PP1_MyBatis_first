@@ -9,7 +9,7 @@ public class MariaDBUtil {
         Connection con=null;
         try {
             Class.forName("org.mariadb.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mariadb://walab.handong.edu:3306/p232_22200809", "p232_22200809", "BahSa2");
+            con = DriverManager.getConnection("jdbc:mariadb://walab.handong.edu:3306/p232_22200811", "p232_22200811", "OoJ6zo");
         } catch (ClassNotFoundException e) {
             System.out.println("driver error");
             throw new RuntimeException(e);
