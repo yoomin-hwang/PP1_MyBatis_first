@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
+         pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,16 +31,14 @@
         }
     </style>
     <script>
-        function delete_ok(id){
-            var a = confirm("정말로 삭제하겠습니까?");
-            if(a) location.href='deletepost.jsp?id=' + id;
+        function delete_ok(){
+            alert("삭제성공 !!!");
         }
+
     </script>
 </head>
 <body>
 <h1>자유게시판</h1>
-<c:out value="${list}" />
-
 
 <table id="list" width="90%">
     <tr>
@@ -53,12 +53,12 @@
     <c:forEach items="${list}" var="u">
         <tr>
             <td>${u.seq}</td>
-            <td>${u.title}</td>
+            <td><a href="view/${u.seq}">${u.title}</a></td>
             <td>${u.writer}</td>
             <td>${u.content}</td>
             <td>${u.regdate}</td>
             <td><a href="editform/${u.seq}">Edit</a></td>
-            <td><a href="javascript:delete_ok('${u.seq}')">Delete</a></td>
+            <td><a href="deleteok/${u.seq}" onclick="delete_ok()">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
