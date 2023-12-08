@@ -11,13 +11,18 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "/board")
+
 public class BoardController {
+    @RequestMapping("/")
+    public String home(){
+
+        return "home";
+    }
 
     @Autowired
     BoardServiceImpl boardService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "board/list", method = RequestMethod.GET)
     public String boardlist(Model model) {
         List<BoardVO> list = boardService.getBoardList(); // 데이터를 가져오는 적절한 메서드 호출
         model.addAttribute("list", list);
@@ -25,12 +30,12 @@ public class BoardController {
         return "list";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "board/add", method = RequestMethod.GET)
     public String addPost() {
         return "addform";
     }
 
-    @RequestMapping(value="/addok", method=RequestMethod.POST)
+    @RequestMapping(value="board/addok", method=RequestMethod.POST)
     public String addPostOk(BoardVO vo) {
         if(boardService.insertBoard(vo) == 0)
             System.out.println("데이터 추가 실패 ");
@@ -39,14 +44,14 @@ public class BoardController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/editform/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "board/editform/{id}", method = RequestMethod.GET)
     public String editPost(@PathVariable("id") int id, Model model) {
         BoardVO boardVO = boardService.getBoard(id);
         model.addAttribute("u", boardVO);
         return "editform";
     }
 
-    @RequestMapping(value = "/editok", method = RequestMethod.POST)
+    @RequestMapping(value = "board/editok", method = RequestMethod.POST)
     public String editPostOk(BoardVO vo) {
         if(boardService.updateBoard(vo) == 0)
             System.out.println("데이터 수정 실패 ");
@@ -55,7 +60,7 @@ public class BoardController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/deleteok/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "board/deleteok/{id}", method = RequestMethod.GET)
     public String deletePostOk(@PathVariable("id") int id)  {
         if(boardService.deleteBoard(id) == 0)
             System.out.println("데이터 삭제 실패 ");
@@ -64,7 +69,7 @@ public class BoardController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "board/view/{id}", method = RequestMethod.GET)
     public String viewPost(@PathVariable("id") int id, Model model) {
         BoardVO boardVO = boardService.getBoard(id);
         model.addAttribute("u", boardVO);

@@ -10,15 +10,15 @@
     </insert>
     <update id="updateBoard">
         update BOARD
-        set title=#{title}, writer=#{writer}, content=#{content}
+        set title=#{title}, writer=#{writer}, content=#{content} where seq=#{seq}
     </update>
     <delete id="deleteBoard">
         delete from BOARD where seq=#{seq}
     </delete>
     <select id="getBoard" resultType="board">
-        select * from BOARD where seq = #{seq}
+        select * from BOARD where seq=#{seq}
     </select>
     <select id="getBoardList" resultType="board">
-        select * from BOARD where seq desc
+        select * from BOARD order by seq
     </select>
 </mapper>
